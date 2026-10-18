@@ -90,15 +90,13 @@ h1 em, h2 em { font-style: italic; font-weight: 500; color: var(--sage); }
   transform: scale(1);
 }
 
-/* image tilt (driven by JS through custom properties) */
-.split__media img, .media-row__item img, .gallery__item img, .menu-grid__media img {
-  transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
-  transition: transform 0.6s var(--ease);
-  will-change: transform;
-}
-.split__media:hover img, .media-row__item:hover img,
-.gallery__item:hover img, .menu-grid__item:hover .menu-grid__media img {
-  transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+/* image tilt (driven by JS through custom properties), mouse screens only */
+@media (hover: hover) and (pointer: fine) {
+  .split__media img, .media-row__item img, .gallery__item img, .menu-grid__media img {
+    transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+    transition: transform 0.6s var(--ease);
+    will-change: transform;
+  }
 }
 
 /* ---------- Buttons ---------- */
@@ -578,10 +576,19 @@ a, button, input[type="range"], label, .btn, .quiz__opt, .fav, .seg__btn, .is-zo
 
 /* ---------- Instagram feed: whole posts, never cropped or scaled up ---------- */
 .feed {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
-  gap: clamp(16px, 2.4vw, 32px);
+  --feed-gap: clamp(16px, 2.4vw, 32px);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   align-items: center;
+  gap: var(--feed-gap);
+}
+.feed__item { flex: 0 1 calc((100% - 2 * var(--feed-gap)) / 3); max-width: 420px; }
+@media (max-width: 900px) {
+  .feed__item { flex-basis: calc((100% - var(--feed-gap)) / 2); }
+}
+@media (max-width: 560px) {
+  .feed__item { flex-basis: 100%; max-width: 520px; }
 }
 .feed__item {
   position: relative;
@@ -661,4 +668,85 @@ a, button, input[type="range"], label, .btn, .quiz__opt, .fav, .seg__btn, .is-zo
     text-shadow: 0 2px 28px rgba(0, 0, 0, 0.55);
   }
   .mocha .mocha__word--accent { color: var(--brass-soft); }
+}
+
+/* ---------- Contact details (visit sections and footer) ---------- */
+.visit__details {
+  margin: 30px 0 0;
+  display: grid;
+  gap: 16px;
+  max-width: 460px;
+}
+.visit__details > div {
+  display: grid;
+  grid-template-columns: 84px 1fr;
+  gap: 16px;
+  align-items: baseline;
+  padding-top: 16px;
+  border-top: 1px solid rgba(200, 161, 91, 0.3);
+}
+.visit__details dt {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--brass);
+}
+.visit__details dd {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.88);
+  overflow-wrap: anywhere;
+}
+.visit__details a { border-bottom: 1px solid rgba(200, 161, 91, 0.5); transition: color 0.3s, border-color 0.3s; }
+.visit__details a:hover { color: var(--brass-soft); border-color: var(--brass-soft); }
+.visit__actions { margin-top: 34px; }
+.footer__col a, .footer__col p { overflow-wrap: anywhere; }
+.fact-list__row p a { border-bottom: 1px solid rgba(200, 161, 91, 0.7); transition: color 0.3s; }
+.fact-list__row p a:hover { color: var(--brass-deep); }
+
+/* ---------- Firm, steady page ---------- */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; overscroll-behavior-y: none; }
+body { overscroll-behavior-y: none; }
+
+/* ---------- Touch screens ----------
+   Reveals run as plain CSS transitions fired when you scroll past a point, instead
+   of being re-positioned every frame while you scroll. Nothing swims or drifts. */
+html.is-touch .grain { display: none; }
+html.is-touch .hero__media,
+html.is-touch .heart__media,
+html.is-touch .mocha__frame,
+html.is-touch .mocha__video,
+html.is-touch .mocha__word,
+html.is-touch .heart__line,
+html.is-touch .heart__eyebrow { will-change: auto; }
+
+html.is-touch #hero .reveal,
+html.is-touch #hero .reveal-word {
+  transition: opacity 0.8s var(--ease), transform 0.9s var(--ease);
+}
+
+html.is-touch .heart__eyebrow,
+html.is-touch .heart__line {
+  transition: opacity 0.8s var(--ease), transform 0.9s var(--ease);
+}
+html.is-touch .heart__side--left .heart__eyebrow,
+html.is-touch .heart__side--left .heart__line { transform: translateX(-32px); }
+html.is-touch .heart__side--right .heart__eyebrow,
+html.is-touch .heart__side--right .heart__line { transform: translateX(32px); }
+html.is-touch .heart__eyebrow.is-in,
+html.is-touch .heart__line.is-in { opacity: 1; transform: none; }
+
+html.is-touch .mocha__word {
+  transform: translateX(32px);
+  transition: opacity 0.7s var(--ease), transform 0.8s var(--ease);
+}
+html.is-touch .mocha__word.is-in { opacity: 1; transform: none; }
+
+/* Nothing may widen the page: the full-width map starts slightly scaled up before
+   it fades in, which used to push the page a few pixels sideways on phones. */
+.visit { overflow: hidden; }
+@supports (overflow: clip) {
+  main { overflow-x: clip; }
 }

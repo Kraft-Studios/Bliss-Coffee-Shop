@@ -12,7 +12,7 @@ Live site: https://kraft-studios.github.io/Bliss-Coffee-Shop/
 | `menu.html` | The menu, with section tabs and a "My picks" list to show at the counter |
 | `coffee.html` | A guide to the beans, a "find your bean" quiz and a brew calculator with timer |
 | `story.html` | A look around the room |
-| `visit.html` | Address, map and practical information |
+| `visit.html` | Address (40 Memorial Road), opening hours, contact details and a map |
 
 ## Features
 
