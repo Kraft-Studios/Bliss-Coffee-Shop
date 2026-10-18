@@ -213,9 +213,10 @@
   }
 
   /* ---------- Autoplay video: plays when in view, pauses when scrolled away ---------- */
-  // Built for phones: forced muted + inline playback, a fallback if autoplay
-  // is blocked (iOS Low Power Mode, data savers), and a tap-to-play button
-  // when a clip still hasn't started so the video is never just missing.
+  // Built for phones: forced muted + inline playback. Some phones block video
+  // autoplay outright (iOS Low Power Mode, data savers). When that happens the
+  // clip is swapped for an animated picture of the same footage, which still
+  // plays by itself, and the real video takes over if the phone later allows it.
   var lazyAutoplayVideos = Array.prototype.slice.call(document.querySelectorAll("video.js-lazy-video"));
   var blockedVideos = [];
 
@@ -228,21 +229,29 @@
     v.setAttribute("playsinline", "");
     v.setAttribute("webkit-playsinline", "");
   }
-  function removeTap(v) {
-    if (v.__tap) { v.__tap.remove(); v.__tap = null; }
+  function fallbackSrc(v) {
+    var landscape = window.innerWidth > window.innerHeight;
+    return (landscape && v.dataset.fallbackWide) || v.dataset.fallback || null;
+  }
+  function hideFallback(v) {
+    if (v.__fb) { v.__fb.remove(); v.__fb = null; }
+    v.style.visibility = "";
     var i = blockedVideos.indexOf(v);
     if (i > -1) blockedVideos.splice(i, 1);
   }
-  function addTap(v) {
-    if (v.__tap || !v.parentNode) return;
-    var b = document.createElement("button");
-    b.type = "button";
-    b.className = "video-tap";
-    b.setAttribute("aria-label", "Play video");
-    b.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>';
-    b.addEventListener("click", function (e) { e.stopPropagation(); startVideo(v); });
-    v.parentNode.appendChild(b);
-    v.__tap = b;
+  function showFallback(v) {
+    if (v.__fb || !v.parentNode) return;
+    var src = fallbackSrc(v);
+    if (!src) return;
+    var img = document.createElement("img");
+    img.className = v.className.replace("js-lazy-video", "").trim() + " video-fallback";
+    img.alt = "";
+    img.setAttribute("aria-hidden", "true");
+    img.decoding = "async";
+    img.src = src;
+    v.parentNode.insertBefore(img, v.nextSibling);
+    v.__fb = img;
+    v.style.visibility = "hidden";
     if (blockedVideos.indexOf(v) < 0) blockedVideos.push(v);
   }
   function startVideo(v) {
@@ -250,7 +259,7 @@
     if (!v.getAttribute("src") && v.dataset.src) v.src = v.dataset.src;
     var p = v.play();
     if (p && p.then) {
-      p.then(function () { removeTap(v); }).catch(function () { addTap(v); });
+      p.then(function () { hideFallback(v); }).catch(function () { showFallback(v); });
     }
   }
   function isOnScreen(v) {
@@ -260,7 +269,7 @@
 
   lazyAutoplayVideos.forEach(function (v) {
     prepInline(v);
-    v.addEventListener("playing", function () { removeTap(v); });
+    v.addEventListener("playing", function () { hideFallback(v); });
   });
 
   if ("IntersectionObserver" in window) {
@@ -272,8 +281,8 @@
             startVideo(v);
             clearTimeout(v.__watch);
             v.__watch = setTimeout(function () {
-              if (v.paused && isOnScreen(v)) addTap(v);
-            }, 5000);
+              if (v.paused && isOnScreen(v)) showFallback(v);
+            }, 3500);
           } else {
             clearTimeout(v.__watch);
             v.pause();
@@ -287,7 +296,8 @@
     lazyAutoplayVideos.forEach(startVideo);
   }
 
-  // A touch is a real user gesture: use it to start anything the phone blocked.
+  // A touch is a real user gesture: if the phone blocked a clip, try the real
+  // video again, and it replaces the animated picture as soon as it plays.
   function retryBlocked() {
     blockedVideos.slice().forEach(function (v) { if (isOnScreen(v)) startVideo(v); });
   }
