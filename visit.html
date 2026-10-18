@@ -3,12 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Visit — Bliss Coffee Roastery</title>
+<meta name="theme-color" content="#1B100A">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2714%27 fill=%27%231B100A%27/%3E%3Cellipse cx=%2732%27 cy=%2732%27 rx=%2717%27 ry=%2711%27 transform=%27rotate(-40 32 32)%27 fill=%27%23C8A15B%27/%3E%3Cpath d=%27M21 41c6-3 9-8 13-11s7-6 9-8%27 stroke=%27%231B100A%27 stroke-width=%273%27 fill=%27none%27 stroke-linecap=%27round%27/%3E%3C/svg%3E">
+<title>Visit | Bliss Coffee Roastery</title>
 <meta name="description" content="Visit Bliss Coffee Roastery at 3AA Roper Street, Kimberley North, Kimberley, Northern Cape.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=20261029">
+<link rel="stylesheet" href="css/theme.css?v=20261029">
 </head>
 <body>
 
@@ -16,7 +19,7 @@
 
 <header class="nav" id="nav">
   <div class="nav__inner">
-    <a href="index.html#top" class="nav__mark">Bliss</a>
+    <a href="index.html#top" class="nav__mark" aria-label="Bliss Coffee Roastery, home">Bliss<span>Coffee Roastery</span></a>
     <nav class="nav__links">
       <a href="menu.html">Menu</a>
       <a href="coffee.html">Coffee</a>
@@ -40,11 +43,11 @@
 <main>
 
   <section class="page-banner">
-    <img src="assets/images/cups-row-macro.jpg" alt="A Bliss Coffee cup on a quiet Kimberley street">
+    <img src="assets/images/misty-cup.jpg" alt="A Bliss Coffee cup on the road line, in soft morning mist">
     <div class="page-banner__scrim"></div>
     <div class="page-banner__content">
       <p class="eyebrow reveal">Visit</p>
-      <h1 class="reveal">Kimberley,<br>Northern Cape.</h1>
+      <h1 class="reveal">Come say hello.</h1>
     </div>
   </section>
 
@@ -56,6 +59,7 @@
       <div class="visit__actions reveal">
         <a class="btn" href="https://www.google.com/maps/search/?api=1&query=3AA+Roper+Street+Kimberley+North+Kimberley+8301" target="_blank" rel="noopener">Get Directions</a>
         <a class="btn btn--ghost" href="https://www.instagram.com/blisscoffeeroastery/" target="_blank" rel="noopener">Follow on Instagram</a>
+        <button class="btn btn--ghost" type="button" data-copy="3AA Roper Street, Kimberley North, Kimberley, 8301">Copy Address</button>
       </div>
     </div>
     <div class="visit__map reveal-scale">
@@ -67,21 +71,31 @@
     </div>
   </section>
 
-  <section class="section" id="before-you-come">
+  <section class="section" id="good-to-know">
     <div class="section__head">
-      <p class="eyebrow reveal">Before You Come</p>
-      <h2 class="reveal">A patio, a counter,<br>a fresh pot.</h2>
+      <p class="eyebrow reveal">Good To Know</p>
+      <h2 class="reveal">Before you head over.</h2>
     </div>
 
-    <div class="split">
-      <div class="split__media reveal-scale">
-        <img src="assets/images/patio-garden.jpg" alt="Garden patio seating at Bliss Coffee Roastery" loading="lazy">
+    <div class="fact-list">
+      <div class="fact-list__row reveal">
+        <h3>Opening hours</h3>
+        <p>They're posted on Instagram first, so a quick look there saves a wasted trip.</p>
       </div>
-      <div class="split__text">
-        <p class="reveal">Coffee, light meals, cakes and something sweet — a garden patio out back and a quiet corner inside. Come for a quick espresso or settle in for a while.</p>
-        <p class="reveal">Hours, daily specials and anything fresh out of the oven get posted on Instagram first — it's the fastest way to see what's on today.</p>
+      <div class="fact-list__row reveal">
+        <h3>Today's specials</h3>
+        <p>Anything fresh out of the oven or new on the bar shows up on Instagram before it reaches the menu.</p>
+      </div>
+      <div class="fact-list__row reveal">
+        <h3>Beans to go</h3>
+        <p>Every bag is roasted and packed on site. Ask which origin is freshest the day you visit.</p>
+      </div>
+      <div class="fact-list__row reveal">
+        <h3>Finding us</h3>
+        <p>We're on Roper Street in Kimberley North. The directions button above opens the quickest route from wherever you're starting.</p>
       </div>
     </div>
+
   </section>
 
   <section class="cta-band">
@@ -89,7 +103,7 @@
     <h2 class="reveal">Have a look at the menu.</h2>
     <div class="cta-band__actions reveal">
       <a class="btn" href="menu.html">View The Menu</a>
-      <a class="btn btn--ghost" href="coffee.html">Meet The Roast</a>
+      <a class="btn btn--ghost" href="coffee.html">Meet The Coffee</a>
     </div>
   </section>
 
@@ -97,18 +111,35 @@
 
 <footer class="footer">
   <div class="footer__inner">
-    <a href="index.html#top" class="footer__mark">Bliss</a>
-    <nav class="footer__links">
-      <a href="menu.html">Menu</a>
-      <a href="coffee.html">Coffee</a>
-      <a href="story.html">Story</a>
-      <a href="visit.html">Visit</a>
-      <a href="https://www.instagram.com/blisscoffeeroastery/" target="_blank" rel="noopener">Instagram</a>
-    </nav>
-    <p class="footer__meta">Bliss Coffee Roastery — Kimberley</p>
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a href="index.html#top" class="footer__mark" aria-label="Bliss Coffee Roastery, home">Bliss<span>Coffee Roastery</span></a>
+        <p>Roasted in small batches, a few streets from where it's poured.</p>
+      </div>
+      <nav class="footer__col" aria-label="Explore">
+        <h4>Explore</h4>
+        <a href="menu.html">Menu</a>
+        <a href="coffee.html">Coffee</a>
+        <a href="story.html">Story</a>
+        <a href="visit.html">Visit</a>
+      </nav>
+      <div class="footer__col">
+        <h4>Find us</h4>
+        <p>3AA Roper Street, Kimberley North<br>Kimberley, 8301</p>
+        <a href="https://www.google.com/maps/search/?api=1&query=3AA+Roper+Street+Kimberley+North+Kimberley+8301" target="_blank" rel="noopener">Get directions</a>
+      </div>
+      <div class="footer__col">
+        <h4>Follow</h4>
+        <a href="https://www.instagram.com/blisscoffeeroastery/" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>&copy; 2026 Bliss Coffee Roastery, Kimberley</p>
+    </div>
   </div>
 </footer>
 
-<script src="js/main.js"></script>
+<script src="js/main.js?v=20261029"></script>
+<script src="js/extras.js?v=20261029"></script>
 </body>
 </html>

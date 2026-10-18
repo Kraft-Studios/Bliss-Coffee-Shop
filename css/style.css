@@ -1,22 +1,26 @@
 /* ---------------------------------------------------
-   Bliss Coffee Roastery — design tokens
+   Bliss Coffee Roastery, design tokens
 --------------------------------------------------- */
 :root {
-  --cream:        #F4EDE1;
-  --cream-deep:   #EBE0CC;
-  --espresso:     #241811;
-  --espresso-90:  #2C1E15;
-  --coffee:       #5B3A24;
-  --tan:          #B99566;
-  --ink:          #221812;
-  --ink-60:       rgba(34, 24, 18, 0.62);
-  --ink-40:       rgba(34, 24, 18, 0.4);
-  --line:         rgba(34, 24, 18, 0.14);
-  --line-soft:    rgba(34, 24, 18, 0.08);
-  --paper:        #FBF8F2;
+  --cream:        #F6EFE2;
+  --cream-deep:   #ECDFC6;
+  --espresso:     #1B100A;
+  --espresso-90:  #26170F;
+  --mahogany:     #3B2316;
+  --coffee:       #6A4126;
+  --brass:        #C8A15B;
+  --brass-soft:   #E4CD98;
+  --brass-deep:   #94722F;
+  --tan:          var(--brass);
+  --ink:          #21150E;
+  --ink-60:       rgba(33, 21, 14, 0.68);
+  --ink-40:       rgba(33, 21, 14, 0.45);
+  --line:         rgba(33, 21, 14, 0.16);
+  --line-soft:    rgba(33, 21, 14, 0.09);
+  --paper:        #FBF7EE;
 
-  --serif: 'Fraunces', 'Iowan Old Style', 'Georgia', serif;
-  --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --serif: 'Cormorant Garamond', 'Iowan Old Style', 'Georgia', serif;
+  --sans: 'Jost', 'Helvetica Neue', Arial, sans-serif;
 
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --dur: 0.9s;
@@ -35,8 +39,8 @@ body {
   background: var(--cream);
   color: var(--ink);
   font-family: var(--sans);
-  font-size: 16px;
-  line-height: 1.6;
+  font-size: 17px;
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
@@ -47,8 +51,8 @@ a { color: inherit; text-decoration: none; }
 
 h1, h2, h3 {
   font-family: var(--serif);
-  font-weight: 500;
-  letter-spacing: -0.01em;
+  font-weight: 600;
+  letter-spacing: -0.005em;
   margin: 0;
   color: var(--espresso);
 }
@@ -68,12 +72,22 @@ p { margin: 0; }
 
 .eyebrow {
   font-family: var(--sans);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.16em;
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: var(--coffee);
-  margin: 0 0 18px;
+  color: var(--brass-deep);
+  margin: 0 0 20px;
+}
+.eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 30px;
+  height: 1px;
+  background: currentColor;
+  vertical-align: middle;
+  margin: -3px 14px 0 0;
+  opacity: 0.8;
 }
 
 /* ---------------------------------------------------
@@ -135,9 +149,10 @@ p { margin: 0; }
   border-bottom: 1px solid transparent;
 }
 .nav.is-scrolled {
-  background: rgba(244, 237, 225, 0.92);
-  backdrop-filter: blur(10px);
-  border-color: var(--line-soft);
+  background: rgba(246, 239, 226, 0.94);
+  backdrop-filter: blur(12px);
+  border-color: rgba(200, 161, 91, 0.45);
+  box-shadow: 0 8px 30px rgba(27, 16, 10, 0.06);
 }
 .nav__inner {
   max-width: 1440px;
@@ -148,12 +163,26 @@ p { margin: 0; }
   justify-content: space-between;
 }
 .nav__mark {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
   font-family: var(--serif);
-  font-size: 22px;
-  font-weight: 600;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
   color: var(--cream);
   transition: color var(--dur) var(--ease);
 }
+.nav__mark span {
+  font-family: var(--sans);
+  font-size: 8.5px;
+  font-weight: 500;
+  letter-spacing: 0.46em;
+  text-transform: uppercase;
+  margin-top: 6px;
+  color: var(--brass);
+}
+.nav.is-scrolled .nav__mark span { color: var(--brass-deep); }
 .nav.is-scrolled .nav__mark { color: var(--espresso); }
 
 .nav__links {
@@ -162,9 +191,9 @@ p { margin: 0; }
   gap: 40px;
 }
 .nav__links a {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 500;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--cream);
   transition: color var(--dur) var(--ease), opacity 0.2s;
@@ -186,9 +215,15 @@ p { margin: 0; }
   transform-origin: left;
 }
 .nav__cta {
-  border: 1px solid currentColor;
-  padding: 10px 18px;
+  border: 1px solid var(--brass);
+  padding: 11px 20px;
+  transition: background 0.4s var(--ease), color 0.4s var(--ease), transform 0.25s var(--ease) !important;
 }
+.nav__links a.nav__cta:hover {
+  background: var(--brass);
+  color: var(--espresso);
+}
+.nav__links a.is-current:not(.nav__cta)::after { transform: scaleX(1); transform-origin: left; }
 
 .nav__toggle {
   display: none;
@@ -220,10 +255,10 @@ p { margin: 0; }
   border-bottom: 1px solid var(--line-soft);
 }
 .nav__mobile a {
-  padding: 14px 0;
+  padding: 16px 0;
   border-top: 1px solid var(--line-soft);
-  font-size: 15px;
-  letter-spacing: 0.03em;
+  font-size: 13px;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--ink);
 }
@@ -270,7 +305,8 @@ p { margin: 0; }
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(24,16,11,0.62) 0%, rgba(24,16,11,0.42) 30%, rgba(24,16,11,0.55) 62%, rgba(24,16,11,0.88) 100%);
+    radial-gradient(ellipse at 50% 42%, rgba(27,16,10,0) 0%, rgba(27,16,10,0.55) 100%),
+    linear-gradient(180deg, rgba(27,16,10,0.6) 0%, rgba(27,16,10,0.34) 32%, rgba(27,16,10,0.5) 64%, rgba(27,16,10,0.92) 100%);
 }
 .hero__content {
   position: relative;
@@ -280,7 +316,7 @@ p { margin: 0; }
   color: var(--cream);
 }
 /* Hero text opacity/position is driven directly from scroll progress each
-   frame (like the video), not a one-shot CSS transition — disable the
+   frame (like the video), not a one-shot CSS transition, disable the
    transition here so JS updates track the scrollbar exactly, with no lag. */
 #hero .reveal,
 #hero .reveal-word {
@@ -290,24 +326,42 @@ p { margin: 0; }
   color: var(--tan);
 }
 .hero__title {
-  font-size: clamp(52px, 11vw, 148px);
-  line-height: 0.96;
-  font-weight: 500;
+  font-size: clamp(62px, min(13.5vw, 19svh), 190px);
+  line-height: 0.9;
+  font-weight: 600;
+  letter-spacing: -0.01em;
   color: var(--cream);
+  text-shadow: 0 6px 40px rgba(27, 16, 10, 0.45);
+}
+.hero__title .reveal-line:nth-child(2) .reveal-word {
+  font-style: italic;
+  font-weight: 500;
+  color: var(--brass-soft);
 }
 .hero__sub {
-  margin: 28px auto 0;
+  margin: 34px auto 0;
   max-width: 480px;
-  font-size: clamp(15px, 1.6vw, 18px);
+  font-size: clamp(15px, 1.5vw, 18px);
+  letter-spacing: 0.04em;
   color: rgba(244, 237, 225, 0.82);
   transition-delay: 0.15s;
 }
+.hero__sub::before {
+  content: '';
+  display: block;
+  width: 64px;
+  height: 1px;
+  background: var(--brass);
+  margin: 0 auto 26px;
+}
 /* ---------------------------------------------------
-   Heart — pinned joke interstitial, same mechanics as the hero
+   Heart: pinned jokes interstitial. The tall video holds the
+   middle of the screen; one joke slides in from the dark space
+   on each side as the section is scrolled.
 --------------------------------------------------- */
 .heart {
   position: relative;
-  height: 190vh;
+  height: 250vh;
   background: var(--espresso);
 }
 .heart__sticky {
@@ -315,9 +369,6 @@ p { margin: 0; }
   top: 0;
   height: 100svh;
   min-height: 520px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   overflow: hidden;
 }
 @media (prefers-reduced-motion: reduce) {
@@ -330,39 +381,76 @@ p { margin: 0; }
   z-index: 0;
   will-change: transform;
 }
+/* The clip is a tall portrait video: on wide screens show all of it at full
+   height (not cropped to a thin slice) and fade its side edges into the
+   dark background. Narrow/portrait screens still fill edge to edge. */
 .heart__video {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  opacity: 0.8;
+  object-fit: contain;
+  opacity: 0.95;
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 22%, #000 78%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0, #000 22%, #000 78%, transparent 100%);
 }
 .heart__scrim {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(24,16,11,0.5) 0%, rgba(24,16,11,0.3) 45%, rgba(24,16,11,0.8) 100%);
+  background: linear-gradient(180deg, rgba(24,16,11,0.35) 0%, rgba(24,16,11,0) 30%, rgba(24,16,11,0) 70%, rgba(24,16,11,0.55) 100%);
 }
 .heart__content {
-  position: relative;
+  position: absolute;
+  inset: 0;
   z-index: 1;
-  text-align: center;
-  padding: 0 24px;
-  color: var(--cream);
-  max-width: 760px;
+  display: grid;
+  /* middle column is exactly the width the video occupies */
+  grid-template-columns: 1fr max(calc(100svh * 9 / 16), 292px) 1fr;
+  align-items: center;
+  padding: 0 var(--edge);
+  column-gap: clamp(20px, 3vw, 56px);
+  pointer-events: none;
 }
-#heart .heart__eyebrow,
-#heart .heart__joke {
-  opacity: 0;
-  transition: none;
-}
+.heart__side { max-width: 460px; color: var(--cream); }
+.heart__side--left { grid-column: 1; justify-self: end; text-align: right; }
+.heart__side--right { grid-column: 3; justify-self: start; text-align: left; }
 .heart__eyebrow { color: var(--tan); }
-.heart__joke {
+.heart__line,
+.heart__eyebrow { opacity: 0; transition: none; }
+.heart__line {
   font-family: var(--serif);
   font-weight: 500;
-  font-size: clamp(26px, 4.8vw, 54px);
-  line-height: 1.3;
+  font-size: clamp(24px, 2.7vw, 46px);
+  line-height: 1.22;
   color: var(--cream);
 }
-.heart__joke-punch { color: var(--tan); }
+.heart__line + .heart__line { margin-top: 0.4em; }
+.heart__punch { color: var(--tan); font-style: italic; }
+@media (prefers-reduced-motion: reduce) {
+  .heart__line, .heart__eyebrow { opacity: 1; }
+}
+
+/* Narrow or portrait screens: video fills the screen, one joke above the
+   other, centred over it. */
+@media (max-aspect-ratio: 4/5), (max-width: 700px) {
+  .heart__video {
+    object-fit: cover;
+    -webkit-mask-image: none;
+    mask-image: none;
+    opacity: 0.8;
+  }
+  .heart__scrim {
+    background: linear-gradient(180deg, rgba(24,16,11,0.65) 0%, rgba(24,16,11,0.35) 45%, rgba(24,16,11,0.7) 100%);
+  }
+  .heart__content {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    padding: 84px 24px 32px;
+  }
+  .heart__side { max-width: 520px; justify-self: center; text-align: center; align-self: center; }
+  .heart__side--left, .heart__side--right { grid-column: 1; }
+  .heart__side--left { grid-row: 1; }
+  .heart__side--right { grid-row: 2; }
+  .heart__line { font-size: clamp(22px, 6vw, 32px); }
+}
 
 /* ---------------------------------------------------
    Statement (intro)
@@ -446,29 +534,86 @@ p { margin: 0; }
 .media-row__item video { width: 100%; height: 100%; object-fit: cover; }
 .media-row__item--wide { aspect-ratio: 16 / 10; }
 
-/* portrait video feature, paired with a short line of copy */
-.feature-portrait {
-  display: flex;
-  align-items: center;
-  gap: clamp(32px, 5vw, 64px);
-  margin-bottom: clamp(48px, 7vw, 90px);
+/* ---------------------------------------------------
+   Mocha: pinned. Video on one side, words on the other; the
+   words slide in sideways one by one as the section is scrolled,
+   and the page releases once the last word has landed.
+--------------------------------------------------- */
+.mocha {
+  position: relative;
+  height: 240vh;
+  background: var(--cream-deep);
 }
-.feature-portrait__frame {
-  flex: 0 0 auto;
-  width: clamp(220px, 24vw, 320px);
+.mocha__sticky {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  min-height: 520px;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  column-gap: clamp(40px, 7vw, 120px);
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 90px var(--edge) 40px;
+}
+.mocha__frame {
+  height: min(70svh, 640px);
   aspect-ratio: 9 / 16;
   overflow: hidden;
   background: var(--espresso-90);
-  transition: transform 0.9s var(--ease);
+  box-shadow: 0 24px 60px rgba(36, 24, 17, 0.22);
+  will-change: transform;
 }
-.feature-portrait__frame video { width: 100%; height: 100%; object-fit: cover; }
-.feature-portrait__text {
-  max-width: 360px;
-  font-size: clamp(16px, 1.6vw, 19px);
+.mocha__video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  will-change: transform;
+}
+.mocha__copy { max-width: 700px; }
+.mocha__words {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(32px, 4.4vw, 68px);
+  line-height: 1.14;
+  letter-spacing: -0.015em;
+  color: var(--espresso);
+}
+.mocha__word {
+  display: inline-block;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+.mocha__word--accent { color: var(--coffee); font-style: italic; }
+@media (prefers-reduced-motion: reduce) {
+  .mocha { height: auto; }
+  .mocha__sticky { position: relative; height: auto; padding-top: 80px; padding-bottom: 80px; }
+  .mocha__word { opacity: 1; }
+}
+
+/* ruled two-column list: label on the left, short description on the right */
+.fact-list { margin-bottom: clamp(48px, 7vw, 90px); }
+.fact-list__row {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: clamp(16px, 4vw, 64px);
+  align-items: baseline;
+  padding: clamp(20px, 2.6vw, 32px) 0;
+  border-top: 1px solid var(--line);
+}
+.fact-list__row:last-child { border-bottom: 1px solid var(--line); }
+.fact-list__row h3 { font-size: clamp(24px, 3vw, 40px); line-height: 1.1; }
+.fact-list__row p {
+  font-size: clamp(16px, 1.5vw, 18px);
   line-height: 1.7;
   color: var(--ink-60);
+  max-width: 560px;
 }
-.feature-portrait__text .eyebrow { margin-bottom: 12px; }
+
+.section--tight-top { padding-top: clamp(48px, 6vw, 80px); }
+.section--tight-top .gallery { margin-top: 0; }
 
 /* full-width landscape video panel, with a short caption below */
 .video-feature {
@@ -584,7 +729,7 @@ p { margin: 0; }
 .btn--ghost:hover { border-color: var(--cream); background: rgba(244,237,225,0.08); }
 
 /* ---------------------------------------------------
-   Page banner — static header for the secondary pages
+   Page banner, static header for the secondary pages
    (Menu, Coffee, Story, Visit); the pinned scroll treatment
    stays unique to the homepage hero.
 --------------------------------------------------- */
@@ -783,8 +928,10 @@ p { margin: 0; }
   .gallery { grid-template-columns: repeat(2, 1fr); }
   .gallery__item:last-child { grid-column: span 2; aspect-ratio: 16/9; }
 
-  .feature-portrait { flex-direction: column; align-items: flex-start; }
-  .feature-portrait__frame { width: 100%; max-width: 280px; }
+  .mocha__sticky { grid-template-columns: 1fr; row-gap: 22px; justify-items: start; align-content: center; padding-top: 84px; }
+  .mocha__frame { height: min(42svh, 360px); }
+  .mocha__words { font-size: clamp(26px, 6.6vw, 38px); }
+  .fact-list__row { grid-template-columns: 1fr; gap: 8px; }
 
   .video-feature__caption { flex-direction: column; align-items: flex-start; gap: 6px; }
   .video-feature__caption p:last-child { text-align: left; }
@@ -803,6 +950,5 @@ p { margin: 0; }
 @media (max-width: 520px) {
   .hero__title { font-size: clamp(44px, 15vw, 72px); }
   .statement__text { font-size: 24px; }
-  .heart__joke { font-size: 26px; }
   .menu-grid { grid-template-columns: 1fr; }
 }

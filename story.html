@@ -3,12 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Story — Bliss Coffee Roastery</title>
-<meta name="description" content="The space behind Bliss Coffee Roastery — a garden patio, a quiet corner, Kimberley, Northern Cape.">
+<meta name="theme-color" content="#1B100A">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2714%27 fill=%27%231B100A%27/%3E%3Cellipse cx=%2732%27 cy=%2732%27 rx=%2717%27 ry=%2711%27 transform=%27rotate(-40 32 32)%27 fill=%27%23C8A15B%27/%3E%3Cpath d=%27M21 41c6-3 9-8 13-11s7-6 9-8%27 stroke=%27%231B100A%27 stroke-width=%273%27 fill=%27none%27 stroke-linecap=%27round%27/%3E%3C/svg%3E">
+<title>Story | Bliss Coffee Roastery</title>
+<meta name="description" content="A look around Bliss Coffee Roastery: the coffee map wall, the counter and the garden out back, in Kimberley, Northern Cape.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=20261029">
+<link rel="stylesheet" href="css/theme.css?v=20261029">
 </head>
 <body>
 
@@ -16,7 +19,7 @@
 
 <header class="nav" id="nav">
   <div class="nav__inner">
-    <a href="index.html#top" class="nav__mark">Bliss</a>
+    <a href="index.html#top" class="nav__mark" aria-label="Bliss Coffee Roastery, home">Bliss<span>Coffee Roastery</span></a>
     <nav class="nav__links">
       <a href="menu.html">Menu</a>
       <a href="coffee.html">Coffee</a>
@@ -40,60 +43,59 @@
 <main>
 
   <section class="page-banner">
-    <img src="assets/images/patio-garden.jpg" alt="Garden patio seating at Bliss Coffee Roastery">
+    <img src="assets/images/barista-machine.jpg" alt="Behind the counter at Bliss Coffee Roastery">
     <div class="page-banner__scrim"></div>
     <div class="page-banner__content">
-      <p class="eyebrow reveal">The Space</p>
-      <h1 class="reveal">Somewhere to<br>stay a while.</h1>
+      <p class="eyebrow reveal">The Story</p>
+      <h1 class="reveal">Look around.</h1>
     </div>
   </section>
 
-  <section class="section" id="patio">
+  <section class="section" id="the-room">
     <div class="section__head">
-      <p class="eyebrow reveal">01 — Out Back</p>
-      <h2 class="reveal">A garden patio,<br>a quiet corner.</h2>
+      <p class="eyebrow reveal">01 / The Wall</p>
+      <h2 class="reveal">A map drawn<br>in coffee.</h2>
     </div>
 
     <div class="split">
       <div class="split__media reveal-scale">
-        <img src="assets/images/patio-garden.jpg" alt="Garden patio seating at Bliss Coffee Roastery" loading="lazy">
+        <img src="assets/images/reading-corner.jpg" alt="A reader with a Bliss cup in front of the coffee-toned world map on the wall" loading="lazy">
       </div>
       <div class="split__text">
-        <p class="reveal">A garden patio out back, a quiet corner inside if the weather doesn't hold. Coffee, light meals, cakes and something sweet with your cup — the kind of place that doesn't mind if you stay past your second refill.</p>
+        <p class="reveal">Behind the corner table, a world map is worked into the wall in warm coffee tones. It suits a roastery that buys from four countries.</p>
+        <p class="reveal">It also happens to be the best seat in the room for a magazine and a second cup.</p>
       </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="the-counter">
+    <div class="section__head">
+      <p class="eyebrow reveal">02 / The Counter</p>
+      <h2 class="reveal">Where the<br>day happens.</h2>
     </div>
 
     <div class="split split--reverse">
       <div class="split__media reveal-scale">
-        <img src="assets/images/reading-corner.jpg" alt="A quiet corner inside Bliss Coffee Roastery" loading="lazy">
+        <img src="assets/images/cups-stack-yellow.jpg" alt="Stacked yellow Bliss Coffee cups on a wooden shelf" loading="lazy">
       </div>
       <div class="split__text">
-        <p class="reveal">Vintage-industrial, a little worn in on purpose. A table by the window if you want to read, a spot on the patio if the Kimberley sun is behaving.</p>
+        <p class="reveal">Yellow cups stacked within reach, a Sanremo machine, and a barista who knows which bean is going in which cup.</p>
       </div>
     </div>
   </section>
 
-  <section class="section section--alt" id="food">
+  <section class="section" id="the-table">
     <div class="section__head">
-      <p class="eyebrow reveal">02 — On The Side</p>
-      <h2 class="reveal">Cakes, snacks,<br>something baked.</h2>
-    </div>
-
-    <div class="split">
-      <div class="split__media reveal-scale">
-        <img src="assets/images/pastry-plate.jpg" alt="Pastry served at Bliss Coffee Roastery" loading="lazy">
-      </div>
-      <div class="split__text">
-        <p class="reveal">Light meals, cakes and something baked most mornings — the kind of food that's happy to share a table with a flat white. Nothing overworked, just done properly.</p>
-      </div>
+      <p class="eyebrow reveal">03 / The Table</p>
+      <h2 class="reveal">Something sweet,<br>set down gently.</h2>
     </div>
 
     <div class="media-row">
-      <div class="media-row__item reveal-scale">
-        <img src="assets/images/reading-corner.jpg" alt="Interior seating at Bliss Coffee Roastery" loading="lazy">
-      </div>
       <div class="media-row__item media-row__item--wide reveal-scale">
-        <img src="assets/images/barista-machine.jpg" alt="Behind the counter at Bliss Coffee Roastery" loading="lazy">
+        <img src="assets/images/patio-garden.jpg" alt="Umbrellas and tables in the garden at Bliss Coffee Roastery" loading="lazy">
+      </div>
+      <div class="media-row__item reveal-scale">
+        <img src="assets/images/pastry-plate.jpg" alt="A dusted pastry on a glass plate" loading="lazy">
       </div>
     </div>
   </section>
@@ -111,18 +113,35 @@
 
 <footer class="footer">
   <div class="footer__inner">
-    <a href="index.html#top" class="footer__mark">Bliss</a>
-    <nav class="footer__links">
-      <a href="menu.html">Menu</a>
-      <a href="coffee.html">Coffee</a>
-      <a href="story.html">Story</a>
-      <a href="visit.html">Visit</a>
-      <a href="https://www.instagram.com/blisscoffeeroastery/" target="_blank" rel="noopener">Instagram</a>
-    </nav>
-    <p class="footer__meta">Bliss Coffee Roastery — Kimberley</p>
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a href="index.html#top" class="footer__mark" aria-label="Bliss Coffee Roastery, home">Bliss<span>Coffee Roastery</span></a>
+        <p>Roasted in small batches, a few streets from where it's poured.</p>
+      </div>
+      <nav class="footer__col" aria-label="Explore">
+        <h4>Explore</h4>
+        <a href="menu.html">Menu</a>
+        <a href="coffee.html">Coffee</a>
+        <a href="story.html">Story</a>
+        <a href="visit.html">Visit</a>
+      </nav>
+      <div class="footer__col">
+        <h4>Find us</h4>
+        <p>3AA Roper Street, Kimberley North<br>Kimberley, 8301</p>
+        <a href="https://www.google.com/maps/search/?api=1&query=3AA+Roper+Street+Kimberley+North+Kimberley+8301" target="_blank" rel="noopener">Get directions</a>
+      </div>
+      <div class="footer__col">
+        <h4>Follow</h4>
+        <a href="https://www.instagram.com/blisscoffeeroastery/" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>&copy; 2026 Bliss Coffee Roastery, Kimberley</p>
+    </div>
   </div>
 </footer>
 
-<script src="js/main.js"></script>
+<script src="js/main.js?v=20261029"></script>
+<script src="js/extras.js?v=20261029"></script>
 </body>
 </html>

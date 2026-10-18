@@ -45,7 +45,7 @@
 
   /* ---------- Scroll reveal (everything except the pinned hero/heart sections) ---------- */
   // Word spans are clipped inside an overflow:hidden ancestor while translated
-  // out of view, so they can never self-report as intersecting — observe their
+  // out of view, so they can never self-report as intersecting, observe their
   // (unclipped) container instead and reveal all child words together.
   var revealTargets = Array.prototype.filter.call(
     document.querySelectorAll(".reveal, .reveal-scale"),
@@ -89,7 +89,7 @@
   /* ---------- Shared pinned-scroll helpers ----------
      Used by any full-screen "sticky" section (hero, heart): 0 at the moment
      the section starts pinning, 1 exactly when it releases back into normal
-     scroll — independent of how far down the page the section sits. */
+     scroll, independent of how far down the page the section sits. */
   function pinnedProgress(sectionEl) {
     var rect = sectionEl.getBoundingClientRect();
     var range = sectionEl.offsetHeight - window.innerHeight;
@@ -108,6 +108,12 @@
     if (seg.mode === "word") {
       el.style.opacity = c;
       el.style.transform = "translateY(" + (1 - c) * 55 + "%) scale(" + (0.94 + c * 0.06) + ")";
+    } else if (seg.mode === "sideRight") {
+      el.style.opacity = c;
+      el.style.transform = "translateX(" + (1 - c) * 70 + "px)";
+    } else if (seg.mode === "sideLeft") {
+      el.style.opacity = c;
+      el.style.transform = "translateX(" + (1 - c) * -50 + "px)";
     } else if (seg.mode === "zoom") {
       el.style.opacity = c;
       el.style.transform = "scale(" + (0.75 + c * 0.25) + ")";
@@ -175,27 +181,31 @@
     }
   }
 
-  /* ---------- Heart: a coffee joke pops in and zooms — same treatment as the hero ---------- */
+  /* ---------- Heart: a joke slides in from each side of the video ---------- */
   if (heart) {
-    var heartEyebrow = heart.querySelector(".heart__eyebrow");
-    var heartJoke = heart.querySelector(".heart__joke");
     var heartMedia = heart.querySelector(".heart__media");
     var heartMediaState = { scale: 1 };
+    var leftParts = heart.querySelectorAll(".heart__side--left .heart__eyebrow, .heart__side--left .heart__line");
+    var rightParts = heart.querySelectorAll(".heart__side--right .heart__eyebrow, .heart__side--right .heart__line");
 
-    var heartSegments = [
-      { el: heartEyebrow, start: 0.08, end: 0.32, current: 0, mode: "fade" },
-      { el: heartJoke, start: 0.26, end: 0.68, current: 0, mode: "zoom" }
-    ];
+    // [eyebrow, setup, punchline] for each side; left joke first, then right.
+    var leftTimes = [[0.04, 0.18], [0.10, 0.28], [0.26, 0.42]];
+    var rightTimes = [[0.46, 0.58], [0.50, 0.66], [0.64, 0.80]];
+    var heartSegments = [];
+    Array.prototype.forEach.call(leftParts, function (el, i) {
+      heartSegments.push({ el: el, start: leftTimes[i][0], end: leftTimes[i][1], current: 0, mode: "sideLeft" });
+    });
+    Array.prototype.forEach.call(rightParts, function (el, i) {
+      heartSegments.push({ el: el, start: rightTimes[i][0], end: rightTimes[i][1], current: 0, mode: "sideRight" });
+    });
 
     if (reduceMotion) {
-      heartSegments.forEach(function (seg) {
-        if (seg.el) { seg.current = 1; applyPop(seg); }
-      });
+      heartSegments.forEach(function (seg) { seg.current = 1; applyPop(seg); });
     } else {
       var tickHeart = function () {
         var p = pinnedProgress(heart);
         tickSegments(heartSegments, p);
-        applyMediaZoom(heartMediaState, heartMedia, p, 0.1);
+        applyMediaZoom(heartMediaState, heartMedia, p, 0.06);
         requestAnimationFrame(tickHeart);
       };
       requestAnimationFrame(tickHeart);
@@ -203,9 +213,9 @@
   }
 
   /* ---------- Lazy autoplay video: loads + plays once near viewport, pauses when scrolled away ---------- */
-  // Used for straightforward background-style clips (hero, heart, and any
-  // video on the secondary pages) that just play on their own timeline —
-  // as opposed to the scroll-scrubbed portrait video below.
+  // Used for background-style clips (hero, heart, the iced mocha feature,
+  // and any video on the secondary pages) that just play on their own
+  // timeline, same as every other video on the site.
   var lazyAutoplayVideos = document.querySelectorAll("video.js-lazy-video");
   if (lazyAutoplayVideos.length) {
     if ("IntersectionObserver" in window) {
@@ -235,85 +245,34 @@
     }
   }
 
-  /* ---------- Scroll-scrubbed video (homepage "In The Cup" portrait clip only) ---------- */
-  var scrollVideos = [];
+  /* ---------- Mocha: pinned, words slide in sideways beside the video ---------- */
+  // Each word slides in from the right in turn as the section is scrolled
+  // (same eased follow as the hero); the video frame eases in from the left
+  // and its picture zooms gently. The last word lands at ~88% of the pinned
+  // run, then the page releases into the next section.
+  var mocha = document.getElementById("mocha");
+  if (mocha) {
+    var mochaWords = mocha.querySelectorAll(".mocha__word");
+    var mochaFrame = mocha.querySelector(".mocha__frame");
+    var mochaVideo = mocha.querySelector(".mocha__video");
+    var mochaZoom = { scale: 1 };
+    var mochaSegments = [{ el: mochaFrame, start: 0, end: 0.14, current: 0, mode: "sideLeft" }]
+      .concat(Array.prototype.map.call(mochaWords, function (w, i) {
+        var start = 0.06 + i * (0.68 / mochaWords.length);
+        return { el: w, start: start, end: start + 0.14, current: 0, mode: "sideRight" };
+      }));
 
-  function loadVideo(video) {
-    if (video.src || !video.dataset.src) return;
-    video.src = video.dataset.src;
-    video.load();
-  }
-
-  function registerScrollVideo(video, container, progressFn, eager) {
-    if (!video) return;
-    if (eager || !("IntersectionObserver" in window)) {
-      loadVideo(video);
+    if (reduceMotion) {
+      mochaSegments.forEach(function (seg) { seg.current = 1; applyPop(seg); });
     } else {
-      var loadIo = new IntersectionObserver(
-        function (entries) {
-          entries.forEach(function (entry) {
-            if (entry.isIntersecting) {
-              loadVideo(video);
-              loadIo.unobserve(container);
-            }
-          });
-        },
-        { rootMargin: "400px 0px 400px 0px" }
-      );
-      loadIo.observe(container);
+      var tickMocha = function () {
+        var p = pinnedProgress(mocha);
+        tickSegments(mochaSegments, p);
+        applyMediaZoom(mochaZoom, mochaVideo, p, 0.18);
+        requestAnimationFrame(tickMocha);
+      };
+      requestAnimationFrame(tickMocha);
     }
-    scrollVideos.push({ video: video, container: container, progress: progressFn });
-  }
-
-  function elementProgress(el) {
-    var rect = el.getBoundingClientRect();
-    var vh = window.innerHeight;
-    var total = vh + rect.height;
-    if (total <= 0) return 0;
-    return Math.min(1, Math.max(0, (vh - rect.top) / total));
-  }
-
-  // Eager-loaded: this clip only becomes seek-able once fully downloaded (its
-  // seek index lives at the end of the file), so lazy-loading it right as the
-  // user scrolls into view would leave scrubbing stuck until the download
-  // catches up — loading it immediately gives it the whole scroll-to-section
-  // distance as buffering time instead.
-  var portraitFrame = document.querySelector(".feature-portrait__frame");
-  registerScrollVideo(
-    portraitFrame && portraitFrame.querySelector("video"),
-    portraitFrame,
-    elementProgress,
-    true
-  );
-
-  if (!reduceMotion && scrollVideos.length) {
-    var tickingVideo = false;
-    var updateScrollVideos = function () {
-      tickingVideo = false;
-      scrollVideos.forEach(function (entry) {
-        var v = entry.video;
-        if (!v.duration || isNaN(v.duration)) return;
-        var rect = entry.container.getBoundingClientRect();
-        if (rect.bottom < 0 || rect.top > window.innerHeight) return;
-        var t = entry.progress(entry.container) * v.duration;
-        if (Math.abs(v.currentTime - t) > 0.04) {
-          try { v.currentTime = t; } catch (e) {}
-        }
-      });
-    };
-    var onScrollVideo = function () {
-      if (!tickingVideo) {
-        tickingVideo = true;
-        requestAnimationFrame(updateScrollVideos);
-      }
-    };
-    document.addEventListener("scroll", onScrollVideo, { passive: true });
-    window.addEventListener("resize", onScrollVideo);
-    scrollVideos.forEach(function (entry) {
-      entry.video.addEventListener("loadedmetadata", updateScrollVideos);
-    });
-    window.addEventListener("load", updateScrollVideos);
-    updateScrollVideos();
   }
 
   /* ---------- Smooth in-page anchor scroll (respects reduced motion) ---------- */

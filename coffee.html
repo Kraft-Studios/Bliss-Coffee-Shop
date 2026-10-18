@@ -3,12 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Coffee — Bliss Coffee Roastery</title>
-<meta name="description" content="How Bliss Coffee Roastery roasts and brews — small batches, real origins, Kimberley, Northern Cape.">
+<meta name="theme-color" content="#1B100A">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2714%27 fill=%27%231B100A%27/%3E%3Cellipse cx=%2732%27 cy=%2732%27 rx=%2717%27 ry=%2711%27 transform=%27rotate(-40 32 32)%27 fill=%27%23C8A15B%27/%3E%3Cpath d=%27M21 41c6-3 9-8 13-11s7-6 9-8%27 stroke=%27%231B100A%27 stroke-width=%273%27 fill=%27none%27 stroke-linecap=%27round%27/%3E%3C/svg%3E">
+<title>Coffee | Bliss Coffee Roastery</title>
+<meta name="description" content="A guide to the beans at Bliss Coffee Roastery: what each origin tastes like and how to brew it well at home.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=20261029">
+<link rel="stylesheet" href="css/theme.css?v=20261029">
 </head>
 <body>
 
@@ -16,7 +19,7 @@
 
 <header class="nav" id="nav">
   <div class="nav__inner">
-    <a href="index.html#top" class="nav__mark">Bliss</a>
+    <a href="index.html#top" class="nav__mark" aria-label="Bliss Coffee Roastery, home">Bliss<span>Coffee Roastery</span></a>
     <nav class="nav__links">
       <a href="menu.html">Menu</a>
       <a href="coffee.html">Coffee</a>
@@ -40,52 +43,80 @@
 <main>
 
   <section class="page-banner">
-    <img src="assets/images/bags-shelf-row.jpg" alt="Bliss Coffee bags lined up on the roastery shelf">
+    <img src="assets/images/cups-row-macro.jpg" alt="Stacked Bliss Coffee cups, softly out of focus">
     <div class="page-banner__scrim"></div>
     <div class="page-banner__content">
-      <p class="eyebrow reveal">The Roast</p>
-      <h1 class="reveal">Small batches,<br>real origins.</h1>
+      <p class="eyebrow reveal">The Coffee</p>
+      <h1 class="reveal">Know your beans.</h1>
     </div>
   </section>
 
   <section class="section" id="origins">
     <div class="section__head">
-      <p class="eyebrow reveal">01 — Where It's From</p>
-      <h2 class="reveal">Four origins,<br>one roaster.</h2>
+      <p class="eyebrow reveal">01 / Origins</p>
+      <h2 class="reveal">Four countries,<br>four personalities.</h2>
     </div>
 
-    <div class="split">
-      <div class="split__media reveal-scale">
-        <img src="assets/images/bag-colombia.jpg" alt="Bliss Coffee Colombia Arabica beans" loading="lazy">
+    <div class="fact-list">
+      <div class="fact-list__row reveal">
+        <h3>Malawi</h3>
+        <p>Soft, sweet and gentle. A mellow cup that rewards a slow sip.</p>
       </div>
-      <div class="split__text">
-        <p class="reveal">Every bag is roasted and packed on site — Malawi, Rwanda, Colombia, Brazil. 100% Arabica, medium roast, worked in batches small enough that someone actually tastes each one before it goes in a bag.</p>
-        <p class="reveal">Mixed nuts on the nose. Caramel and chocolate through the cup. Full body, a clean, crisp acidity behind it — the kind of profile that holds up whether it's pulled as an espresso or poured over.</p>
+      <div class="fact-list__row reveal">
+        <h3>Rwanda</h3>
+        <p>Bright and juicy, often with a floral lift on the finish.</p>
+      </div>
+      <div class="fact-list__row reveal">
+        <h3>Colombia</h3>
+        <p>The balanced one. Caramel, nuts and chocolate that are easy to love.</p>
+      </div>
+      <div class="fact-list__row reveal">
+        <h3>Brazil</h3>
+        <p>Low on acidity, full in body, with a nutty, chocolatey sweetness.</p>
       </div>
     </div>
 
     <div class="media-row">
       <div class="media-row__item media-row__item--wide reveal-scale">
-        <img src="assets/images/bags-shelf-row.jpg" alt="Bliss Coffee bags lined up ready for sale" loading="lazy">
+        <img src="assets/images/misty-cup.jpg" alt="A Bliss Coffee cup on the road line, in soft morning mist" loading="lazy">
       </div>
       <div class="media-row__item reveal-scale">
-        <img src="assets/images/bag-seasonal-post.jpg" alt="Bliss Coffee seasonal blend bag" loading="lazy">
+        <img src="assets/images/barista-pourover.jpg" alt="A barista pouring water over an Aeropress by hand" loading="lazy">
       </div>
     </div>
   </section>
 
-  <section class="section section--alt" id="brewing">
+  <section class="section" id="finder">
     <div class="section__head">
-      <p class="eyebrow reveal">02 — How It's Made</p>
-      <h2 class="reveal">Espresso, pour-over,<br>and everything after.</h2>
+      <p class="eyebrow reveal">02 / Find Yours</p>
+      <h2 class="reveal">Which bean is<br><em>your</em> bean?</h2>
+    </div>
+    <div class="quiz" id="quiz">
+      <div class="quiz__bar"><span id="quizBar"></span></div>
+      <div class="quiz__stage" id="quizStage" aria-live="polite">
+        <p class="quiz__fallback">Two quick questions and we'll point you to a bean. (This needs JavaScript.)</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="at-home">
+    <div class="section__head">
+      <p class="eyebrow reveal">03 / At Home</p>
+      <h2 class="reveal">Brew it well<br>in your own kitchen.</h2>
     </div>
 
-    <div class="split split--reverse">
-      <div class="split__media reveal-scale">
-        <img src="assets/images/barista-pourover.jpg" alt="Barista pouring an Aeropress by hand at Bliss Coffee" loading="lazy">
+    <div class="fact-list">
+      <div class="fact-list__row reveal">
+        <h3>Aeropress</h3>
+        <p>A medium-fine grind, roughly 15 g of coffee to 250 g of water. Stir, steep briefly, then press slowly and steadily.</p>
       </div>
-      <div class="split__text">
-        <p class="reveal">Behind the counter it's a Sanremo machine and a hand pour when the bean calls for it. Nothing rushed, nothing performative — just someone who knows the beans making your coffee.</p>
+      <div class="fact-list__row reveal">
+        <h3>Pour-over</h3>
+        <p>A medium grind and about one part coffee to sixteen of water. Wet the grounds and let them bloom for thirty seconds, then pour in slow circles.</p>
+      </div>
+      <div class="fact-list__row reveal">
+        <h3>Keeping beans</h3>
+        <p>Store them airtight, away from light and heat, and grind just before you brew. Fresh grounds taste noticeably better than a week-old scoop.</p>
       </div>
     </div>
 
@@ -96,15 +127,49 @@
           data-src="assets/video/whatsapp-clip-2.mp4"></video>
       </div>
       <div class="video-feature__caption reveal">
-        <p class="eyebrow">The Process</p>
-        <p>A slow pour, a paper filter, a weighed dose — filter coffee done the way it's meant to be, one cup at a time.</p>
+        <p class="eyebrow">At the counter</p>
+        <p>Dose, bloom, pour. The same steps at home as behind the bar.</p>
       </div>
     </div>
+  </section>
 
-    <div class="gallery">
-      <div class="gallery__item reveal-scale"><img src="assets/images/latte-heart-yellow.jpg" alt="Latte with heart-shaped milk art" loading="lazy"></div>
-      <div class="gallery__item reveal-scale"><img src="assets/images/pour-latte-art.jpg" alt="Pouring latte art at Bliss Coffee" loading="lazy"></div>
-      <div class="gallery__item reveal-scale"><img src="assets/images/cups-stack-yellow.jpg" alt="Stacked Bliss Coffee cups" loading="lazy"></div>
+  <section class="section" id="brew-lab">
+    <div class="section__head">
+      <p class="eyebrow reveal">04 / Brew Lab</p>
+      <h2 class="reveal">Measure it,<br><em>time</em> it, pour it.</h2>
+    </div>
+    <div class="lab" id="lab">
+      <div class="lab__panel">
+        <div class="seg" role="radiogroup" aria-label="Brew method">
+          <button type="button" class="seg__btn is-active" role="radio" aria-checked="true" data-method="pour">Pour-over</button>
+          <button type="button" class="seg__btn" role="radio" aria-checked="false" data-method="aero">Aeropress</button>
+        </div>
+        <label class="lab__slider" for="labRange">
+          <span>Water</span><output id="labWater" for="labRange">300 ml</output>
+        </label>
+        <input type="range" id="labRange" min="150" max="600" step="10" value="300">
+        <div class="lab__stats">
+          <div><span>Coffee</span><strong id="labCoffee">19 g</strong></div>
+          <div><span>Grind</span><strong id="labGrind">Medium</strong></div>
+          <div><span>Ratio</span><strong id="labRatio">1 : 16</strong></div>
+        </div>
+        <p class="lab__note" id="labNote"></p>
+      </div>
+      <div class="lab__timer">
+        <div class="ring">
+          <svg viewBox="0 0 120 120" aria-hidden="true">
+            <circle class="ring__bg" cx="60" cy="60" r="54"></circle>
+            <circle class="ring__fg" id="labRing" cx="60" cy="60" r="54"></circle>
+          </svg>
+          <div class="ring__label"><strong id="labTime">0:30</strong><span id="labPhase">Bloom</span></div>
+        </div>
+        <p class="lab__step" id="labStep" aria-live="polite">Press start when the water hits the grounds.</p>
+        <div class="lab__buttons">
+          <button type="button" class="btn" id="labStart">Start timer</button>
+          <button type="button" class="btn btn--outline" id="labReset">Reset</button>
+        </div>
+        <p class="lab__hint">Guide times only. Taste, then adjust.</p>
+      </div>
     </div>
   </section>
 
@@ -121,18 +186,35 @@
 
 <footer class="footer">
   <div class="footer__inner">
-    <a href="index.html#top" class="footer__mark">Bliss</a>
-    <nav class="footer__links">
-      <a href="menu.html">Menu</a>
-      <a href="coffee.html">Coffee</a>
-      <a href="story.html">Story</a>
-      <a href="visit.html">Visit</a>
-      <a href="https://www.instagram.com/blisscoffeeroastery/" target="_blank" rel="noopener">Instagram</a>
-    </nav>
-    <p class="footer__meta">Bliss Coffee Roastery — Kimberley</p>
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a href="index.html#top" class="footer__mark" aria-label="Bliss Coffee Roastery, home">Bliss<span>Coffee Roastery</span></a>
+        <p>Roasted in small batches, a few streets from where it's poured.</p>
+      </div>
+      <nav class="footer__col" aria-label="Explore">
+        <h4>Explore</h4>
+        <a href="menu.html">Menu</a>
+        <a href="coffee.html">Coffee</a>
+        <a href="story.html">Story</a>
+        <a href="visit.html">Visit</a>
+      </nav>
+      <div class="footer__col">
+        <h4>Find us</h4>
+        <p>3AA Roper Street, Kimberley North<br>Kimberley, 8301</p>
+        <a href="https://www.google.com/maps/search/?api=1&query=3AA+Roper+Street+Kimberley+North+Kimberley+8301" target="_blank" rel="noopener">Get directions</a>
+      </div>
+      <div class="footer__col">
+        <h4>Follow</h4>
+        <a href="https://www.instagram.com/blisscoffeeroastery/" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>&copy; 2026 Bliss Coffee Roastery, Kimberley</p>
+    </div>
   </div>
 </footer>
 
-<script src="js/main.js"></script>
+<script src="js/main.js?v=20261029"></script>
+<script src="js/extras.js?v=20261029"></script>
 </body>
 </html>
