@@ -212,6 +212,36 @@
     }
   }
 
+  /* ---------- Mocha: pinned, words slide in sideways beside the video ---------- */
+  // Each word slides in from the right in turn as the section is scrolled
+  // (same eased follow as the hero); the video frame eases in from the left
+  // and its picture zooms gently. The last word lands at ~88% of the pinned
+  // run, then the page releases into the next section.
+  var mocha = document.getElementById("mocha");
+  if (mocha) {
+    var mochaWords = mocha.querySelectorAll(".mocha__word");
+    var mochaFrame = mocha.querySelector(".mocha__frame");
+    var mochaVideo = mocha.querySelector(".mocha__video");
+    var mochaZoom = { scale: 1 };
+    var mochaSegments = [{ el: mochaFrame, start: 0, end: 0.14, current: 0, mode: "sideLeft" }]
+      .concat(Array.prototype.map.call(mochaWords, function (w, i) {
+        var start = 0.06 + i * (0.68 / mochaWords.length);
+        return { el: w, start: start, end: start + 0.14, current: 0, mode: "sideRight" };
+      }));
+
+    if (reduceMotion) {
+      mochaSegments.forEach(function (seg) { seg.current = 1; applyPop(seg); });
+    } else {
+      var tickMocha = function () {
+        var p = pinnedProgress(mocha);
+        tickSegments(mochaSegments, p);
+        applyMediaZoom(mochaZoom, mochaVideo, p, 0.18);
+        requestAnimationFrame(tickMocha);
+      };
+      requestAnimationFrame(tickMocha);
+    }
+  }
+
   /* ---------- Autoplay video: plays when in view, pauses when scrolled away ---------- */
   // Built for phones: forced muted + inline playback. Some phones block video
   // autoplay outright (iOS Low Power Mode, data savers). When that happens the
