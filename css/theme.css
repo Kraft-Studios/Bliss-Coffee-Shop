@@ -13,7 +13,7 @@ html.page-leaving body { opacity: 0; transition: opacity 0.3s ease; }
 .nav__inner { padding-top: 16px; padding-bottom: 16px; }
 
 /* ---------- Headings with an italic accent word ---------- */
-h1 em, h2 em { font-style: italic; font-weight: 500; color: var(--coffee); }
+h1 em, h2 em { font-style: italic; font-weight: 500; color: var(--sage); }
 .cta-band h2 em, .visit h2 em, .page-banner h1 em { color: var(--brass-soft); }
 
 /* ---------- Larger serif sizes (Cormorant runs small) ---------- */
@@ -32,7 +32,7 @@ h1 em, h2 em { font-style: italic; font-weight: 500; color: var(--coffee); }
 /* ---------- Statement ---------- */
 .ornament { display: block; margin: 0 auto 36px; color: var(--brass-deep); }
 .statement { text-align: center; }
-.statement .reveal-word:nth-child(5n+2) { font-style: italic; color: var(--coffee); }
+.statement .reveal-word:nth-child(5n+2) { font-style: italic; color: var(--sage); }
 
 /* ---------- Ticker band ---------- */
 .ticker {
@@ -65,12 +65,12 @@ h1 em, h2 em { font-style: italic; font-weight: 500; color: var(--coffee); }
 /* ---------- Richer alt sections ---------- */
 .section--alt {
   background:
-    radial-gradient(900px 420px at 88% 0%, rgba(200, 161, 91, 0.16), transparent 62%),
-    linear-gradient(180deg, #EFE3CB 0%, #E9DAC0 100%);
+    radial-gradient(900px 420px at 88% 0%, rgba(200, 161, 91, 0.10), transparent 62%),
+    linear-gradient(180deg, #F7F9F6 0%, #EDF2EC 100%);
   border-top: 1px solid rgba(200, 161, 91, 0.45);
   border-bottom: 1px solid rgba(200, 161, 91, 0.45);
 }
-.mocha { background: linear-gradient(180deg, #E9DAC0 0%, #E2D0B0 100%); }
+.mocha { background: linear-gradient(180deg, #EDF2EC 0%, #E3EBE2 100%); }
 
 /* ---------- Framed imagery with a refined hover ---------- */
 .split__media, .media-row__item, .gallery__item, .menu-grid__media { position: relative; }
@@ -78,7 +78,7 @@ h1 em, h2 em { font-style: italic; font-weight: 500; color: var(--coffee); }
   content: '';
   position: absolute;
   inset: 14px;
-  border: 1px solid rgba(246, 239, 226, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.7);
   opacity: 0;
   transform: scale(1.03);
   transition: opacity 0.5s var(--ease), transform 0.6s var(--ease);
@@ -164,7 +164,7 @@ h1 em, h2 em { font-style: italic; font-weight: 500; color: var(--coffee); }
     radial-gradient(900px 400px at 80% 0%, rgba(200, 161, 91, 0.12), transparent 65%),
     var(--espresso);
   border-top: 1px solid rgba(200, 161, 91, 0.45);
-  color: rgba(246, 239, 226, 0.7);
+  color: rgba(255, 255, 255, 0.7);
 }
 .footer__inner { display: block; max-width: 1440px; padding: clamp(56px, 7vw, 96px) var(--edge) 28px; }
 .footer__top {
@@ -210,7 +210,7 @@ h1 em, h2 em { font-style: italic; font-weight: 500; color: var(--coffee); }
   padding-top: 24px;
   font-size: 13px;
   letter-spacing: 0.06em;
-  color: rgba(246, 239, 226, 0.5);
+  color: rgba(255, 255, 255, 0.5);
 }
 
 /* ---------- Scroll progress + back to top ---------- */
@@ -281,7 +281,7 @@ a, button, input[type="range"], label, .btn, .quiz__opt, .fav, .seg__btn, .is-zo
   font-family: var(--serif);
   font-style: italic;
   font-size: clamp(18px, 2vw, 24px);
-  color: rgba(246, 239, 226, 0.85);
+  color: rgba(255, 255, 255, 0.85);
 }
 .lightbox__count {
   position: absolute;
@@ -334,7 +334,7 @@ a, button, input[type="range"], label, .btn, .quiz__opt, .fav, .seg__btn, .is-zo
   position: sticky;
   top: var(--nav-h);
   z-index: 90;
-  background: rgba(246, 239, 226, 0.95);
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(200, 161, 91, 0.45);
 }
@@ -379,7 +379,7 @@ a, button, input[type="range"], label, .btn, .quiz__opt, .fav, .seg__btn, .is-zo
   z-index: 3;
   width: 44px; height: 44px;
   border-radius: 50%;
-  border: 1px solid rgba(246, 239, 226, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.75);
   background: rgba(27, 16, 10, 0.5);
   backdrop-filter: blur(4px);
   color: var(--cream);
@@ -502,7 +502,7 @@ a, button, input[type="range"], label, .btn, .quiz__opt, .fav, .seg__btn, .is-zo
 }
 .quiz__opt strong { display: block; font-family: var(--serif); font-size: 26px; font-weight: 600; color: var(--espresso); margin-bottom: 4px; }
 .quiz__opt:hover { border-color: var(--brass); background: rgba(200, 161, 91, 0.12); transform: translateY(-3px); }
-.quiz__result-name { font-size: clamp(54px, 8vw, 112px); line-height: 0.95; font-style: italic; font-weight: 500; color: var(--coffee); margin: 6px 0 16px; }
+.quiz__result-name { font-size: clamp(54px, 8vw, 112px); line-height: 0.95; font-style: italic; font-weight: 500; color: var(--sage); margin: 6px 0 16px; }
 .quiz__result p { max-width: 560px; color: var(--ink-60); font-size: 18px; margin-bottom: 14px; }
 .quiz__result .quiz__tip { color: var(--ink); }
 .quiz__actions { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 26px; }
@@ -594,7 +594,7 @@ a, button, input[type="range"], label, .btn, .quiz__opt, .fav, .seg__btn, .is-zo
   content: '';
   position: absolute;
   inset: 14px;
-  border: 1px solid rgba(246, 239, 226, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.7);
   opacity: 0;
   transition: opacity 0.5s var(--ease);
   pointer-events: none;
@@ -602,3 +602,30 @@ a, button, input[type="range"], label, .btn, .quiz__opt, .fav, .seg__btn, .is-zo
 .feed__item:hover::after { opacity: 1; }
 .feed__cta { margin-top: clamp(32px, 4vw, 56px); text-align: center; }
 .section--feed { border-bottom: none; }
+
+/* Crisper on pure white */
+.grain { opacity: 0.018; }
+
+/* ---------- Tap-to-play fallback (shown only if a phone blocks autoplay) ---------- */
+.video-tap {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  z-index: 6;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 1px solid var(--brass);
+  background: rgba(27, 16, 10, 0.72);
+  backdrop-filter: blur(4px);
+  color: var(--brass-soft);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  padding: 0;
+  animation: tapIn 0.5s var(--ease) both;
+}
+.video-tap svg { width: 26px; height: 26px; fill: currentColor; margin-left: 3px; }
+.video-tap:hover { background: var(--brass); color: var(--espresso); }
+@keyframes tapIn { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: none; } }
+.video-feature__frame, .menu-intro__frame, .mocha__frame { position: relative; }

@@ -212,68 +212,93 @@
     }
   }
 
-  /* ---------- Lazy autoplay video: loads + plays once near viewport, pauses when scrolled away ---------- */
-  // Used for background-style clips (hero, heart, the iced mocha feature,
-  // and any video on the secondary pages) that just play on their own
-  // timeline, same as every other video on the site.
-  var lazyAutoplayVideos = document.querySelectorAll("video.js-lazy-video");
-  if (lazyAutoplayVideos.length) {
-    if ("IntersectionObserver" in window) {
-      var lazyVio = new IntersectionObserver(
-        function (entries) {
-          entries.forEach(function (entry) {
-            var v = entry.target;
-            if (entry.isIntersecting) {
-              if (!v.src && v.dataset.src) {
-                v.src = v.dataset.src;
-                v.load();
-              }
-              var p = v.play();
-              if (p && p.catch) p.catch(function () {});
-            } else {
-              v.pause();
-            }
-          });
-        },
-        { threshold: 0.1, rootMargin: "300px 0px 300px 0px" }
-      );
-      lazyAutoplayVideos.forEach(function (v) { lazyVio.observe(v); });
-    } else {
-      lazyAutoplayVideos.forEach(function (v) {
-        if (v.dataset.src) v.src = v.dataset.src;
-      });
+  /* ---------- Autoplay video: plays when in view, pauses when scrolled away ---------- */
+  // Built for phones: forced muted + inline playback, a fallback if autoplay
+  // is blocked (iOS Low Power Mode, data savers), and a tap-to-play button
+  // when a clip still hasn't started so the video is never just missing.
+  var lazyAutoplayVideos = Array.prototype.slice.call(document.querySelectorAll("video.js-lazy-video"));
+  var blockedVideos = [];
+
+  function prepInline(v) {
+    v.muted = true;
+    v.defaultMuted = true;
+    v.loop = true;
+    v.playsInline = true;
+    v.setAttribute("muted", "");
+    v.setAttribute("playsinline", "");
+    v.setAttribute("webkit-playsinline", "");
+  }
+  function removeTap(v) {
+    if (v.__tap) { v.__tap.remove(); v.__tap = null; }
+    var i = blockedVideos.indexOf(v);
+    if (i > -1) blockedVideos.splice(i, 1);
+  }
+  function addTap(v) {
+    if (v.__tap || !v.parentNode) return;
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "video-tap";
+    b.setAttribute("aria-label", "Play video");
+    b.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>';
+    b.addEventListener("click", function (e) { e.stopPropagation(); startVideo(v); });
+    v.parentNode.appendChild(b);
+    v.__tap = b;
+    if (blockedVideos.indexOf(v) < 0) blockedVideos.push(v);
+  }
+  function startVideo(v) {
+    prepInline(v);
+    if (!v.getAttribute("src") && v.dataset.src) v.src = v.dataset.src;
+    var p = v.play();
+    if (p && p.then) {
+      p.then(function () { removeTap(v); }).catch(function () { addTap(v); });
     }
   }
-
-  /* ---------- Mocha: pinned, words slide in sideways beside the video ---------- */
-  // Each word slides in from the right in turn as the section is scrolled
-  // (same eased follow as the hero); the video frame eases in from the left
-  // and its picture zooms gently. The last word lands at ~88% of the pinned
-  // run, then the page releases into the next section.
-  var mocha = document.getElementById("mocha");
-  if (mocha) {
-    var mochaWords = mocha.querySelectorAll(".mocha__word");
-    var mochaFrame = mocha.querySelector(".mocha__frame");
-    var mochaVideo = mocha.querySelector(".mocha__video");
-    var mochaZoom = { scale: 1 };
-    var mochaSegments = [{ el: mochaFrame, start: 0, end: 0.14, current: 0, mode: "sideLeft" }]
-      .concat(Array.prototype.map.call(mochaWords, function (w, i) {
-        var start = 0.06 + i * (0.68 / mochaWords.length);
-        return { el: w, start: start, end: start + 0.14, current: 0, mode: "sideRight" };
-      }));
-
-    if (reduceMotion) {
-      mochaSegments.forEach(function (seg) { seg.current = 1; applyPop(seg); });
-    } else {
-      var tickMocha = function () {
-        var p = pinnedProgress(mocha);
-        tickSegments(mochaSegments, p);
-        applyMediaZoom(mochaZoom, mochaVideo, p, 0.18);
-        requestAnimationFrame(tickMocha);
-      };
-      requestAnimationFrame(tickMocha);
-    }
+  function isOnScreen(v) {
+    var r = v.getBoundingClientRect();
+    return r.bottom > 0 && r.top < window.innerHeight && r.right > 0 && r.left < window.innerWidth;
   }
+
+  lazyAutoplayVideos.forEach(function (v) {
+    prepInline(v);
+    v.addEventListener("playing", function () { removeTap(v); });
+  });
+
+  if ("IntersectionObserver" in window) {
+    var lazyVio = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          var v = entry.target;
+          if (entry.isIntersecting) {
+            startVideo(v);
+            clearTimeout(v.__watch);
+            v.__watch = setTimeout(function () {
+              if (v.paused && isOnScreen(v)) addTap(v);
+            }, 5000);
+          } else {
+            clearTimeout(v.__watch);
+            v.pause();
+          }
+        });
+      },
+      { threshold: 0.05, rootMargin: "300px 0px 300px 0px" }
+    );
+    lazyAutoplayVideos.forEach(function (v) { lazyVio.observe(v); });
+  } else {
+    lazyAutoplayVideos.forEach(startVideo);
+  }
+
+  // A touch is a real user gesture: use it to start anything the phone blocked.
+  function retryBlocked() {
+    blockedVideos.slice().forEach(function (v) { if (isOnScreen(v)) startVideo(v); });
+  }
+  ["touchend", "click"].forEach(function (ev) {
+    document.addEventListener(ev, retryBlocked, { passive: true });
+  });
+  document.addEventListener("visibilitychange", function () {
+    if (!document.hidden) {
+      lazyAutoplayVideos.forEach(function (v) { if (isOnScreen(v) && v.paused) startVideo(v); });
+    }
+  });
 
   /* ---------- Smooth in-page anchor scroll (respects reduced motion) ---------- */
   document.querySelectorAll('a[href^="#"]').forEach(function (a) {

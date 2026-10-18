@@ -2,12 +2,14 @@
    Bliss Coffee Roastery, design tokens
 --------------------------------------------------- */
 :root {
-  --cream:        #F6EFE2;
-  --cream-deep:   #ECDFC6;
+  --cream:        #FFFFFF;
+  --cream-deep:   #F2F6F1;
   --espresso:     #1B100A;
   --espresso-90:  #26170F;
   --mahogany:     #3B2316;
   --coffee:       #6A4126;
+  --sage:         #3F5B4A;
+  --sage-soft:    #DCE6DC;
   --brass:        #C8A15B;
   --brass-soft:   #E4CD98;
   --brass-deep:   #94722F;
@@ -17,7 +19,7 @@
   --ink-40:       rgba(33, 21, 14, 0.45);
   --line:         rgba(33, 21, 14, 0.16);
   --line-soft:    rgba(33, 21, 14, 0.09);
-  --paper:        #FBF7EE;
+  --paper:        #FFFFFF;
 
   --serif: 'Cormorant Garamond', 'Iowan Old Style', 'Georgia', serif;
   --sans: 'Jost', 'Helvetica Neue', Arial, sans-serif;
@@ -149,7 +151,7 @@ p { margin: 0; }
   border-bottom: 1px solid transparent;
 }
 .nav.is-scrolled {
-  background: rgba(246, 239, 226, 0.94);
+  background: rgba(255, 255, 255, 0.94);
   backdrop-filter: blur(12px);
   border-color: rgba(200, 161, 91, 0.45);
   box-shadow: 0 8px 30px rgba(27, 16, 10, 0.06);
@@ -343,7 +345,7 @@ p { margin: 0; }
   max-width: 480px;
   font-size: clamp(15px, 1.5vw, 18px);
   letter-spacing: 0.04em;
-  color: rgba(244, 237, 225, 0.82);
+  color: rgba(255, 255, 255, 0.82);
   transition-delay: 0.15s;
 }
 .hero__sub::before {
@@ -586,7 +588,7 @@ p { margin: 0; }
   opacity: 0;
   will-change: transform, opacity;
 }
-.mocha__word--accent { color: var(--coffee); font-style: italic; }
+.mocha__word--accent { color: var(--sage); font-style: italic; }
 @media (prefers-reduced-motion: reduce) {
   .mocha { height: auto; }
   .mocha__sticky { position: relative; height: auto; padding-top: 80px; padding-bottom: 80px; }
@@ -682,7 +684,7 @@ p { margin: 0; }
   margin-top: 28px;
   font-size: 18px;
   line-height: 1.7;
-  color: rgba(244, 237, 225, 0.78);
+  color: rgba(255, 255, 255, 0.78);
 }
 .visit__actions {
   margin-top: 40px;
@@ -724,9 +726,9 @@ p { margin: 0; }
 .btn--ghost {
   background: transparent;
   color: var(--cream);
-  border-color: rgba(244, 237, 225, 0.4);
+  border-color: rgba(255, 255, 255, 0.4);
 }
-.btn--ghost:hover { border-color: var(--cream); background: rgba(244,237,225,0.08); }
+.btn--ghost:hover { border-color: var(--cream); background: rgba(255, 255, 255,0.08); }
 
 /* ---------------------------------------------------
    Page banner, static header for the secondary pages
@@ -880,8 +882,8 @@ p { margin: 0; }
 --------------------------------------------------- */
 .footer {
   background: var(--espresso);
-  color: rgba(244, 237, 225, 0.6);
-  border-top: 1px solid rgba(244, 237, 225, 0.1);
+  color: rgba(255, 255, 255, 0.6);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 .footer__inner {
   max-width: 1440px;
