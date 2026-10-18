@@ -223,6 +223,9 @@
     var mochaFrame = mocha.querySelector(".mocha__frame");
     var mochaVideo = mocha.querySelector(".mocha__video");
     var mochaZoom = { scale: 1 };
+    // On small screens the video is a full-screen background, so it must be
+    // visible from the first frame instead of sliding in from the side.
+    var mochaCompact = window.matchMedia("(max-width: 900px)");
     var mochaSegments = [{ el: mochaFrame, start: 0, end: 0.14, current: 0, mode: "sideLeft" }]
       .concat(Array.prototype.map.call(mochaWords, function (w, i) {
         var start = 0.06 + i * (0.68 / mochaWords.length);
@@ -235,7 +238,11 @@
       var tickMocha = function () {
         var p = pinnedProgress(mocha);
         tickSegments(mochaSegments, p);
-        applyMediaZoom(mochaZoom, mochaVideo, p, 0.18);
+        if (mochaCompact.matches) {
+          mochaFrame.style.opacity = 1;
+          mochaFrame.style.transform = "none";
+        }
+        applyMediaZoom(mochaZoom, mochaVideo, p, mochaCompact.matches ? 0.05 : 0.18);
         requestAnimationFrame(tickMocha);
       };
       requestAnimationFrame(tickMocha);
