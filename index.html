@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bliss Coffee Roastery — Kimberley</title>
+<meta name="description" content="Bliss Coffee Roastery. Small-batch coffee, roasted and served in Kimberley, Northern Cape.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="grain"></div>
+
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a href="index.html#top" class="nav__mark">Bliss</a>
+    <nav class="nav__links">
+      <a href="menu.html">Menu</a>
+      <a href="coffee.html">Coffee</a>
+      <a href="story.html">Story</a>
+      <a href="visit.html">Visit</a>
+      <a href="visit.html" class="nav__cta">Get Directions</a>
+    </nav>
+    <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+  </div>
+  <nav class="nav__mobile" id="navMobile">
+    <a href="menu.html">Menu</a>
+    <a href="coffee.html">Coffee</a>
+    <a href="story.html">Story</a>
+    <a href="visit.html">Visit</a>
+    <a href="https://www.instagram.com/blisscoffeeroastery/" target="_blank" rel="noopener">Instagram</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- HERO — pinned full-screen: video and words progress with scroll, then releases -->
+  <section class="hero" id="hero">
+    <div class="hero__sticky">
+      <div class="hero__media">
+        <video class="hero__video js-lazy-video" muted loop playsinline autoplay preload="auto"
+          poster="assets/images/cups-row-macro.jpg"
+          data-src="assets/video/fall-spill.mp4"></video>
+        <div class="hero__scrim"></div>
+      </div>
+      <div class="hero__content">
+        <p class="eyebrow reveal">Kimberley, Northern Cape</p>
+        <h1 class="hero__title">
+          <span class="reveal-line"><span class="reveal-word">Bliss</span></span>
+          <span class="reveal-line"><span class="reveal-word">Coffee</span></span>
+          <span class="reveal-line"><span class="reveal-word">Roastery</span></span>
+        </h1>
+        <p class="hero__sub reveal">Roasted in small batches, a few streets from where it's poured.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 01 — STATEMENT -->
+  <section class="statement" id="intro">
+    <p class="statement__text">
+      <span class="reveal-word">A</span> <span class="reveal-word">roastery</span> <span class="reveal-word">first.</span>
+      <span class="reveal-word">A</span> <span class="reveal-word">coffee</span> <span class="reveal-word">shop</span>
+      <span class="reveal-word">because</span> <span class="reveal-word">good</span> <span class="reveal-word">coffee</span>
+      <span class="reveal-word">deserves</span> <span class="reveal-word">a</span> <span class="reveal-word">good</span>
+      <span class="reveal-word">place</span> <span class="reveal-word">to</span> <span class="reveal-word">drink</span> <span class="reveal-word">it.</span>
+    </p>
+  </section>
+
+  <!-- 02 — THE ROAST -->
+  <section class="section" id="roast">
+    <div class="section__head">
+      <p class="eyebrow reveal">01 — The Roast</p>
+      <h2 class="reveal">Small batches,<br>real origins.</h2>
+    </div>
+
+    <div class="split">
+      <div class="split__media reveal-scale">
+        <img src="assets/images/bags-shelf-row.jpg" alt="Bliss Coffee bags lined up, roasted with beans from Malawi, Rwanda and beyond" loading="lazy">
+      </div>
+      <div class="split__text">
+        <p class="reveal">Every bag is roasted and packed on site — Malawi, Rwanda, Colombia, Brazil. 100% Arabica, medium roast, worked in batches small enough that someone actually tastes each one.</p>
+        <p class="reveal">Mixed nuts on the nose. Caramel and chocolate through the cup. Full body, a clean, crisp acidity behind it.</p>
+      </div>
+    </div>
+
+    <div class="media-row">
+      <div class="media-row__item media-row__item--wide reveal-scale">
+        <img src="assets/images/bag-colombia.jpg" alt="Bliss Coffee Colombia Arabica beans" loading="lazy">
+      </div>
+      <div class="media-row__item reveal-scale">
+        <img src="assets/images/bag-seasonal-post.jpg" alt="Bliss Coffee seasonal blend bag" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- HEART — pinned full-screen, same treatment as the header: a coffee joke pops in and zooms as you scroll -->
+  <section class="heart" id="heart">
+    <div class="heart__sticky">
+      <div class="heart__media">
+        <video class="heart__video js-lazy-video" muted loop playsinline preload="none"
+          poster="assets/images/cups-stack-yellow.jpg"
+          data-src="assets/video/beating-heart.mp4"></video>
+        <div class="heart__scrim"></div>
+      </div>
+      <div class="heart__content">
+        <p class="eyebrow heart__eyebrow">Before you scroll any further</p>
+        <p class="heart__joke">Why did the coffee file a police report?<br><span class="heart__joke-punch">It got mugged.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 — IN THE CUP -->
+  <section class="section section--alt" id="cup">
+    <div class="section__head">
+      <p class="eyebrow reveal">02 — In The Cup</p>
+      <h2 class="reveal">Espresso, pour-over,<br>and everything after.</h2>
+    </div>
+
+    <div class="split split--reverse">
+      <div class="split__media reveal-scale">
+        <img src="assets/images/barista-pourover.jpg" alt="Barista pouring an Aeropress by hand at Bliss Coffee" loading="lazy">
+      </div>
+      <div class="split__text">
+        <p class="reveal">Behind the counter it's a Sanremo machine and a hand pour when the bean calls for it. Nothing rushed, nothing performative — just someone who knows the beans making your coffee.</p>
+      </div>
+    </div>
+
+    <div class="feature-portrait">
+      <div class="feature-portrait__frame reveal-scale">
+        <video class="lazy-video" muted playsinline preload="none"
+          poster="assets/images/latte-heart-yellow.jpg"
+          data-src="assets/video/iced-mocha.mp4"></video>
+      </div>
+      <div class="feature-portrait__text">
+        <p class="eyebrow reveal">On The Menu</p>
+        <p class="reveal">Hot or iced, espresso-based or filter — the iced mocha is the one people keep coming back for.</p>
+      </div>
+    </div>
+
+    <div class="gallery">
+      <div class="gallery__item reveal-scale"><img src="assets/images/latte-heart-yellow.jpg" alt="Latte with heart-shaped milk art" loading="lazy"></div>
+      <div class="gallery__item reveal-scale"><img src="assets/images/pour-latte-art.jpg" alt="Pouring latte art at Bliss Coffee" loading="lazy"></div>
+      <div class="gallery__item reveal-scale"><img src="assets/images/cups-stack-yellow.jpg" alt="Stacked Bliss Coffee cups" loading="lazy"></div>
+    </div>
+  </section>
+
+  <!-- 04 — THE SPACE -->
+  <section class="section" id="space">
+    <div class="section__head">
+      <p class="eyebrow reveal">03 — The Space</p>
+      <h2 class="reveal">Somewhere to<br>stay a while.</h2>
+    </div>
+
+    <div class="split">
+      <div class="split__media reveal-scale">
+        <img src="assets/images/patio-garden.jpg" alt="Garden patio seating at Bliss Coffee Roastery" loading="lazy">
+      </div>
+      <div class="split__text">
+        <p class="reveal">A garden patio out back, a quiet corner inside if the weather doesn't hold. Coffee, light meals, cakes and something sweet with your cup.</p>
+      </div>
+    </div>
+
+    <div class="split split--reverse">
+      <div class="split__media reveal-scale">
+        <img src="assets/images/pastry-plate.jpg" alt="Pastry served at Bliss Coffee Roastery" loading="lazy">
+      </div>
+      <div class="split__text">
+        <p class="reveal">Cakes, snacks and something baked most mornings — the kind of food that's happy to share a table with a flat white.</p>
+      </div>
+    </div>
+
+    <div class="media-row">
+      <div class="media-row__item reveal-scale">
+        <img src="assets/images/reading-corner.jpg" alt="A quiet corner inside Bliss Coffee Roastery" loading="lazy">
+      </div>
+      <div class="media-row__item media-row__item--wide reveal-scale">
+        <img src="assets/images/barista-machine.jpg" alt="Behind the counter at Bliss Coffee Roastery" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 — VISIT -->
+  <section class="visit" id="visit">
+    <div class="visit__inner">
+      <p class="eyebrow reveal">04 — Visit</p>
+      <h2 class="reveal">Kimberley,<br>Northern Cape.</h2>
+      <p class="visit__address reveal">3AA Roper Street, Kimberley North<br>Kimberley, 8301</p>
+      <div class="visit__actions reveal">
+        <a class="btn" href="https://www.google.com/maps/search/?api=1&query=3AA+Roper+Street+Kimberley+North+Kimberley+8301" target="_blank" rel="noopener">Get Directions</a>
+        <a class="btn btn--ghost" href="https://www.instagram.com/blisscoffeeroastery/" target="_blank" rel="noopener">Follow on Instagram</a>
+      </div>
+    </div>
+    <div class="visit__map reveal-scale">
+      <iframe
+        src="https://www.google.com/maps?q=3AA+Roper+Street+Kimberley+North+Kimberley+8301&output=embed"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Map to Bliss Coffee Roastery"></iframe>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <a href="index.html#top" class="footer__mark">Bliss</a>
+    <nav class="footer__links">
+      <a href="menu.html">Menu</a>
+      <a href="coffee.html">Coffee</a>
+      <a href="story.html">Story</a>
+      <a href="visit.html">Visit</a>
+      <a href="https://www.instagram.com/blisscoffeeroastery/" target="_blank" rel="noopener">Instagram</a>
+    </nav>
+    <p class="footer__meta">Bliss Coffee Roastery — Kimberley</p>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
